@@ -1,16 +1,18 @@
 body {
-    font-family: 'Open Sans', sans-serif;
+  font-family: 'Karla', sans-serif;
+  font-family: 'Open Sans', sans-serif;
     background-color: #ffffff;
   }
   
   .file-upload {
     background-color: #ffffff;
-    width: 600px;
+    width: 80%;
+    height: auto;
     margin: 0 auto;
-    padding: 20px;
-      border-radius: 10px;
-      border: solid 1.5px #f6f7fa;
-      background-color: #f6f7fa;
+    padding: 15% 3%;
+    border-radius: 10px;
+    border: solid 1.5px #f6f7fa;
+    background-color: #f6f7fa;
   }
   
   .file-upload-btn {
@@ -57,7 +59,7 @@ body {
     opacity: 0;
     cursor: pointer;
   }
-  
+ 
   .image-upload-wrap {
     margin-top: 20px;
     border: 4px dashed #1FB264;
@@ -66,6 +68,8 @@ body {
       border-radius: 10px;
       border: solid 2px #35465d;
       background-color: #ffffff;
+      width: 50%;
+      margin: auto
   }
   
   .image-dropping,
@@ -85,21 +89,20 @@ body {
   .drag-text h3 {
     font-weight: 100;
     text-transform: uppercase;
-    color: #4d0777;
     padding: 0 0 60px 0;
       font-size: 1.5rem;
   }
   
   .file-upload-image {
-    max-height: 200px;
-    max-width: 200px;
+    max-height: 60%;
+    max-width: 60%;
     margin: auto;
     padding: 20px;
   
   }
   
   .remove-image {
-    width: 200px;
+    width: 40%;
     margin: 0;
     color: #fff;
     background: #cd4535;
@@ -175,3 +178,145 @@ body {
           font-size: 2rem;
       }
   }
+
+.bts-label {
+    width: 20%;
+    text-align: left;
+    height: 2rem;
+}
+
+.bar-container {
+  height: 2.7rem;
+}
+.Jin-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2rem;
+  border-radius: 10px;
+  width: 100%;
+  background-color: rgba(255, 48, 211, 0.2);
+}
+.Jin-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2rem;
+  border-radius: 10px;
+  background-color: rgba(255, 48, 211, 1);
+}
+.RM-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2rem;
+  border-radius: 10px;
+  width: 100%;
+  background-color: rgba(000, 000, 000, 0.2);
+}
+.RM-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2rem;
+  border-radius: 10px;
+  background-color: rgba(000, 000, 000, 1);
+}
+.jungkook-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2rem;
+  border-radius: 10px;
+  width: 100%;
+  background-color: rgba(255, 48, 48, 0.2);
+}
+.jungkook-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2rem;
+  border-radius: 10px;
+  background-color: rgba(255, 48, 48, 1);
+}
+.Jimin-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2rem;
+  border-radius: 10px;
+  width: 100%;
+  background-color: rgba(48, 139, 255, 0.2);
+}
+.Jimin-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2rem;
+  border-radius: 10px;
+  background-color: rgba(48, 139, 255, 1);
+}
+.V-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2rem;
+  border-radius: 10px;
+  width: 100%;
+  background-color: rgba(130, 48, 255, 0.2);
+}
+.V-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2rem;
+  border-radius: 10px;
+  background-color: rgba(130, 48, 255, 1);
+}
+.Suga-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2rem;
+  border-radius: 10px;
+  width: 100%;
+  background-color: rgba(49, 132, 155, 0.2);
+}
+.Suga-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2rem;
+  border-radius: 10px;
+  background-color: rgba(49, 132, 155, 1);
+}
+.J Hope-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2rem;
+  border-radius: 10px;
+  width: 100%;
+  background-color: rgba(48, 255, 148, 0.2);
+}
+.J Hope-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2rem;
+  border-radius: 10px;
+  background-color: rgba(48, 255, 148, 1);
+}
+
+.percent-text {
+  font-size: 1rem;
+  color: #ffffff;
+}
+
+#label-container {
+  width: 80%;
+  margin: 0 auto;
+}
+.result-message {
+  font-size: 2rem;
+}
