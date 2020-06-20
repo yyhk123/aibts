@@ -11,6 +11,8 @@
 
     <link rel="stylesheet" href="style.css">
 
+    <link href="https://fonts.googleapis.com/css2?family=Karla:ital@1&family=Open+Sans&display=swap" rel="stylesheet">
+
     <script data-ad-client="ca-pub-3166568240543935" async
         src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <title>My BTS</title>
@@ -18,13 +20,7 @@
 
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light nav-distance">
-        <a class="navbar-brand" href="#">BTS Look Alike</a>
 
-        <div class="collapse navbar-collapse" id="navbarNav">
-
-        </div>
-    </nav>
 
     <section class="section">
         <h1 class="title">
@@ -41,7 +37,7 @@
         <div class="image-upload-wrap">
             <input class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*" />
             <div class="drag-text">
-                <img src="upp.jpg" class="mt-5 pt-5 upload">
+                <img src="upp.png" class="mt-5 pt-5 mb-5 upload up-img">
                 <h3 class="upload-text">Please upload picture of a face</h3>
             </div>
         </div>
@@ -49,7 +45,7 @@
             <img class="file-upload-image" id="face-image" src="#" alt="your image" />
             <p class="result-msg"></p>
             <div class="probability-label">
-                <div id="label-container"></div>
+                <div id="label-container" class="d-flex flex-column justify-content-around"></div>
             </div>
 
             <!-- Go to www.addthis.com/dashboard to customize your tools -->
@@ -57,7 +53,7 @@
 
             <div class="image-title-wrap">
                 <button type="button" onclick="removeUpload()" class="remove-image">Remove
-                    <span class="image-title">Uploaded Image</span>
+                    <span class="image-title">Uploaded Image Again</span>
                 </button>
             </div>
         </div>
@@ -108,7 +104,7 @@
                     $('.file-upload-content').show();
                 };
                 reader.readAsDataURL(input.files[0]);
-                init().then(() => {
+                init().then(function () {
                     predict();
                 });
             } else {
@@ -120,6 +116,7 @@
             $('.file-upload-input').replaceWith($('.file-upload-input').clone());
             $('.file-upload-content').hide();
             $('.image-upload-wrap').show();
+            window.location.reload();
         }
         $('.image-upload-wrap').bind('dragover', function () {
             $('.image-upload-wrap').addClass('image-dropping');
@@ -147,7 +144,9 @@
             maxPredictions = model.getTotalClasses();
             labelContainer = document.getElementById("label-container");
             for (let i = 0; i < maxPredictions; i++) { // and class labels
-                labelContainer.appendChild(document.createElement("div"));
+                var element = document.createElement("div");
+                element.classList.add("d-flex");
+                labelContainer.appendChild(element);
             }
         }
         // run the webcam image through the image model
@@ -156,36 +155,82 @@
             var image = document.getElementById("face-image");
             const prediction = await model.predict(image, false);
             prediction.sort((a, b) => parseFloat(b.probability) - parseFloat(a.probability));
-            var msg;
+            var resultTitle, resultExplain;
             switch (prediction[0].className) {
                 case "Jin":
-                    msg = "You are ideal type of Jin!"
+                    resultTitle = "Your look alike member is Jin!";
+                    resultExplain = "Jin's personality is INTP, \"Logical\"";
                     break;
                 case "RM":
-                    msg = "You are ideal type of RM!"
+                    resultTitle = "Your look alike member is RM!";
+                    resultExplain = "RM's personality is ENFP, \“Campaigner\”";
                     break;
                 case "jungkook":
-                    msg = "You are ideal type of Jungkook!"
+                    resultTitle = "Your look alike member is Jungkook!";
+                    resultExplain = "Jungkook's personality is INFP, \“Mediator\”";;
                     break;
                 case "Jimin":
-                    msg = "You are ideal type of Jimin!"
+                    resultTitle = "Your look alike member is Jimin!";
+                    resultExplain = "Jimin's personality is ENFJ, \“Protagonist\”";
                     break;
                 case "V":
-                    msg = "You are ideal type of V!"
+                    resultTitle = "Your look alike member is V!";
+                    resultExplain = "V's personality is ENFP, \““Campaigner\”";
                     break;
                 case "Suga":
-                    msg = "You are ideal type of Suga!"
+                    resultTitle = "Your look alike member is Suga!";
+                    resultExplain = "Suga's personality is INFP, \“Mediator\”";
                     break;
                 case "J Hope":
-                    msg = "You are ideal type of J Hope!"
+                    resultTitle = "Your look alike member is J Hope!";
+                    resultExplain = "J Hope's personality is ESFJ, \“Consul\”";
                     break;
             }
-            $('.result-msg').html(msg);
-            for (let i = 0; i < maxPredictions; i++) {
-                const classPrediction =
-                    prediction[i].className + ": " + (prediction[i].probability * 100).toFixed(2) + '%';
-                labelContainer.childNodes[i].innerHTML = classPrediction;
+            var title = "<div class='" + prediction[0].className + "-bts-title'>" + resultTitle + "</div>"
+            var explain = "<div class='bts-explain pt-2'>" + resultExplain + "</div>"
+            $('.result-msg').html(title + explain);
+
+            var bar;
+            for (let i = 0; i < 2; i++) {
+                if (prediction[i].probability.toFixed(2) > 0.1) {
+                    bar = Math.round(prediction[i].probability.toFixed(2) * 100) + "%";
+                } else if (prediction[i].probability.toFixed(2) >= 0.01) {
+                    bar = "4%"
+                } else {
+                    bar = "2%"
+                }
+                var labelTitle;
+                switch (prediction[i].className) {
+                    case "Jin":
+                        labelTitle = "Jin";
+                        break;
+                    case "RM":
+                        labelTitle = "RM";
+                        break;
+                    case "jungkook":
+                        labelTitle = "Jungkook";
+                        break;
+                    case "Jimin":
+                        labelTitle = "Jimin";
+                        break;
+                    case "V":
+                        labelTitle = "V";
+                        break;
+                    case "Suga":
+                        labelTitle = "Suga";
+                        break;
+                    case "J Hope":
+                        labelTitle = "J Hope";
+                        break;
+                }
+
+                var label;
+                var label = "<div class='bts-label d-flex align-items-center'>" + labelTitle + "</div>"
+                var bar = "<div class='bar-container position-relative container'><div class='" + prediction[i].className + "-box'></div><div class='d-flex justify-content-center align-items-center " + prediction[i].className + "-bar' style='width: " + Math.round(prediction[i].probability.toFixed(2) * 100) + '%' + "'><span class='d-block percent-text'>" + Math.round(prediction[i].probability.toFixed(2) * 100) + "%</span></div></div>"
+                labelContainer.childNodes[i].innerHTML = label + bar;
+
             }
+
         }
     </script>
 
